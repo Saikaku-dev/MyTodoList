@@ -37,7 +37,7 @@ struct LoginView: View {
                 .padding(.top)
                 .font(.callout)
                 .onTapGesture {
-                    
+                    vm.showMainView = true
                 }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -50,6 +50,9 @@ struct LoginView: View {
             Text("version: beta")
                 .foregroundColor(Color(.systemGray4))
                 .font(.caption2)
+        }
+        .fullScreenCover(isPresented: $vm.showMainView) {
+            MainTabView()
         }
     }
 }

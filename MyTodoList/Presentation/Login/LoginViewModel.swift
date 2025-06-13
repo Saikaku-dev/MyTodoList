@@ -12,4 +12,5 @@ import Observation
 class LoginViewModel {
     var email: String = ""
     var password: String = ""
+    var showMainView: Bool = false
 }
