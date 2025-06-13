@@ -8,5 +8,5 @@
 import Foundation
 
 enum HideKeyboard {
-    case email, password
+    case email, password, taskContent
 }
