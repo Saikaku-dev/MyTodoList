@@ -37,9 +37,8 @@ class CurrentTaskViewModel {
     }
     
     func toggleCompeted(for task: Task) {
-        var updateTask = task
-        updateTask.toggleCompleted()
-        localTaskUseCase.updateTask(updateTask)
+        task.toggleCompleted()
+        localTaskUseCase.updateTask(task)
         loadLocalTasks()
     }
 }

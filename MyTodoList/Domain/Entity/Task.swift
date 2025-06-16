@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import SwiftData
 
-struct Task:Identifiable {
-    let id: String
-    let title: String
+@Model
+class Task:Identifiable {
+    @Attribute(.unique) var id: String
+    var title: String
     var isCompleted: Bool
     
     init(id: String = UUID().uuidString, title: String, isCompleted: Bool = false) {
@@ -18,7 +20,7 @@ struct Task:Identifiable {
         self.isCompleted = isCompleted
     }
     
-    mutating func toggleCompleted() {
+    func toggleCompleted() {
         isCompleted.toggle()
     }
 }
