@@ -37,6 +37,32 @@ class LocalTaskRepositoryImpl: TaskRepository {
         }
     }
     
+    func fetchPendingTasks() -> [Task] {
+        do {
+            let descriptor = FetchDescriptor<Task>(
+                predicate: #Predicate { $0.isCompleted == false },
+                sortBy: [SortDescriptor(\.createdDate)]
+            )
+            return try modelContext.fetch(descriptor)
+        } catch {
+            print("fetchError: \(error)")
+            return []
+        }
+    }
+    
+    func fetchCompletedTasks() -> [Task] {
+        do {
+            let descriptor = FetchDescriptor<Task>(
+                predicate: #Predicate { $0.isCompleted == true },
+                sortBy: [SortDescriptor(\.createdDate)]
+            )
+            return try modelContext.fetch(descriptor)
+        } catch {
+            print("fetchError: \(error)")
+            return []
+        }
+    }
+    
     func saveTask(_ task: Task) {
         modelContext.insert(task)
         saveContext()

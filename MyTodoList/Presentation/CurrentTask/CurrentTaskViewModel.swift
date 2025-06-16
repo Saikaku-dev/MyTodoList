@@ -10,7 +10,8 @@ import Observation
 
 @Observable
 class CurrentTaskViewModel {
-    var tasks:[Task] = []
+    var pendingTasks:[Task] = []
+    var completedTasks:[Task] = []
     var taskTitle: String = ""
     var showAddTaskSheet: Bool = false
     private let localTaskUseCase: LocalTaskUseCase
@@ -25,7 +26,8 @@ class CurrentTaskViewModel {
     }
     
     func loadLocalTasks() {
-        tasks = localTaskUseCase.fetchAllTasks()
+        pendingTasks = localTaskUseCase.fetchPendingTasks()
+        completedTasks = localTaskUseCase.fetchCompletedTasks()
     }
     
     func addTask(title: String) {

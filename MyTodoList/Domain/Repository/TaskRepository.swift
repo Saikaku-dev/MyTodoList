@@ -7,9 +7,11 @@
 
 import Foundation
 
-//Taskに対して、何をする(抽象的)
+//Taskに対しての抽象メソッド
 protocol TaskRepository {
     func fetchAllTasks() -> [Task]
+    func fetchPendingTasks() -> [Task]
+    func fetchCompletedTasks() -> [Task]
     func saveTask(_ task: Task)
     func deleteTask(_ task: Task)
     func updateTask(_ task: Task)

@@ -18,6 +18,14 @@ class LocalTaskUseCase {
         repository.fetchAllTasks()
     }
     
+    func fetchPendingTasks() -> [Task] {
+        repository.fetchPendingTasks()
+    }
+    
+    func fetchCompletedTasks() -> [Task] {
+        repository.fetchCompletedTasks()
+    }
+    
     func addTask(_ task: Task) {
         repository.saveTask(task)
     }
