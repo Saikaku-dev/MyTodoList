@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+protocol UserRepository {
+    var currentUser: User? { get }
+    
+    func signIn(email: String, password: String)
+    func signOut()
+}

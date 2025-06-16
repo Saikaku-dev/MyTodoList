@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+class MockUserRepositoryImpl: UserRepository {
+    var currentUser: User? = 
+}
