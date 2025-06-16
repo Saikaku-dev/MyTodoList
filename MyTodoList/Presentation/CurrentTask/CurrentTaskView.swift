@@ -11,17 +11,46 @@ struct CurrentTaskView: View {
     @State var vm = CurrentTaskViewModel(localTaskUseCase: LocalTaskUseCase(repository: LocalTaskRepositoryImpl()))
     
     var body: some View {
-        VStack {
-            ForEach(vm.tasks) { task in
-                TaskRow(
-                    title: task.title,
-                    isCompleted: task.isCompleted,
-                    onTap: {
-                        vm.toggleCompeted(for: task)
-                    }
-                )
-                Divider()
+        VStack(alignment: .leading) {
+            Text("Todo:")
+                .fontWeight(.bold)
+                .font(.caption)
+            VStack {
+                ForEach(vm.pendingTasks) { task in
+                    TaskRow(
+                        title: task.title,
+                        isCompleted: task.isCompleted,
+                        onTap: {
+                            vm.toggleCompeted(for: task)
+                        }
+                    )
+                    Divider()
+                }
+                Spacer()
             }
+            .frame(maxWidth: .infinity,maxHeight: .infinity)
+            .background(Color(.systemGray6))
+            Divider()
+            
+            Text("Completed:")
+                .fontWeight(.bold)
+                .font(.caption)
+            VStack {
+                ForEach(vm.completedTasks) { task in
+                    TaskRow(
+                        title: task.title,
+                        isCompleted: task.isCompleted,
+                        onTap: {
+                            vm.toggleCompeted(for: task)
+                        }
+                    )
+                    Divider()
+                }
+                Spacer()
+            }
+            .frame(maxWidth: .infinity,maxHeight: .infinity)
+            .background(Color(.systemGray6))
+            
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

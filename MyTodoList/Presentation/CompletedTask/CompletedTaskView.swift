@@ -8,11 +8,31 @@
 import SwiftUI
 
 struct CompletedTaskView: View {
+    @Bindable var vm: CurrentTaskViewModel
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text("Completed:")
+                .fontWeight(.bold)
+                .font(.caption)
+            VStack {
+                ForEach(vm.completedTasks) { task in
+                    TaskRow(
+                        title: task.title,
+                        isCompleted: task.isCompleted,
+                        onTap: {
+                            vm.toggleCompeted(for: task)
+                        }
+                    )
+                    Divider()
+                }
+                Spacer()
+            }
+        }
+        .frame(maxWidth: .infinity,maxHeight: .infinity)
+        .background(Color(.systemGray6))
     }
 }
 
 #Preview {
-    CompletedTaskView()
+    CompletedTaskView(vm: CurrentTaskViewModel(localTaskUseCase: LocalTaskUseCase(repository: LocalTaskRepositoryImpl())))
 }

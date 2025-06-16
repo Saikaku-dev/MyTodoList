@@ -14,6 +14,10 @@ struct MainTabView: View {
                 .tabItem {
                     Image(systemName: "list.dash")
                 }
+            CompletedTaskView(vm: CurrentTaskViewModel(localTaskUseCase: LocalTaskUseCase(repository: LocalTaskRepositoryImpl())))
+                .tabItem {
+                    Image(systemName: "trash")
+                }
         }
     }
 }
