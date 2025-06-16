@@ -7,7 +7,6 @@
 
 import Foundation
 
-//Taskに対しての抽象メソッド
 protocol TaskRepository {
     func fetchAllTasks() -> [Task]
     func fetchPendingTasks() -> [Task]

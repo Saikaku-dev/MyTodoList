@@ -9,12 +9,13 @@ import Foundation
 import SwiftData
 
 @Model
-class Task:Identifiable {
+class Task: Identifiable {
     @Attribute(.unique) let id: String
     var title: String
     var isCompleted: Bool
     var createdDate: Date
     var completedDate: Date?
+    var user: User?
     
     init(id: String = UUID().uuidString,
          title: String,
